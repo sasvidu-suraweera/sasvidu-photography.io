@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just testing</title>
+    <style>
+        .body{
+            background-color: white;
+            color: black;
+        }
+        .dark{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body id="body" class="body">
+    <h1>Hello my name is Sasvidu</h1>
+    <p id="mode-vis">Mode :</p>
+    <button onclick="darkon()">Dark</button>
+    <h1>Online and Offline Detection</h1>
+    <p>Connection Status : <span id="status"></span></p>
+    <script>
+        function onlineoroffline(){
+            var statusviewer = document.getElementById("status");
+            if(navigator.onLine){
+                statusviewer.textContent = "Online";
+            }else{
+                statusviewer.textContent = "Offline";
+            }
+        }
+        onlineoroffline();
+
+        window.addEventListener('online', onlineoroffline);
+        window.addEventListener('offline', onlineoroffline);
+
+        function darkon(){
+            var x = document.getElementById("body");
+            if(x.className === "body"){
+                x.className += " dark";
+                document.getElementById("mode-vis").textContent = "Mode = Dark";
+                localStorage.setItem("mode", "dark")
+            }else{
+                x.className = "body";
+                document.getElementById("mode-vis").textContent = "Mode = Light"
+                localStorage.setItem("mode", "light")
+            }
+        }
+        window.onload = function() {
+            var savedMode = localStorage.getItem("mode");
+            var x = document.getElementById("body");
+            if(savedMode === "dark"){
+                x.classList.remove("body");
+                x.classList.add("dark");
+            }
+        };
+    </script>
+</body>
+</html>

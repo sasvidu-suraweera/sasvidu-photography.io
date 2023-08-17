@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .disconnected{
+            background-color: rgb(48, 92, 214);
+            font-size: 2vw;
+            width: 20cm;
+            border-radius: 0.2cm;
+            animation: drop 0.5s linear forwards;
+        }
+        @keyframes drop{
+            0%{
+                transform: translateY(-100px);
+            }
+            100%{
+                transform: translateY(0px);
+            }
+        }
+        .none{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="none" id="conwn">
+            Dear User, you are disconnected from the internet!!!
+        </div>
+    </center>
+    <script>
+        function dectection(){
+            var x = document.getElementById("conwn");
+            if(navigator.onLine){
+                x.className = "none";
+            }else{
+                x.className -= "none";
+                x.className += " disconnected";
+            }
+        }
+        dectection();
+        window.addEventListener('online', dectection)       
+        window.addEventListener('offline', dectection)       
+    </script>
+</body>
+</html>
